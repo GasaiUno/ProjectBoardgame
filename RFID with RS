@@ -19,6 +19,12 @@ void setup()
 void loop()
 {
   lcd.setCursor(1,0);
+  if (digitalRead(SR)==HIGH){
+    lcd.clear();
+    lcd.print("SwitchReed");
+  }
+  else
+  {
   // ищем новые карты:
   if ( ! mfrc522.PICC_IsNewCardPresent())
   {
@@ -41,9 +47,5 @@ void loop()
      content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
      content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
-  if (digitalRead(SR)==HIGH){
-    lcd.clear();
-    lcd.print("SwitchReed");
   }
-  
 }
